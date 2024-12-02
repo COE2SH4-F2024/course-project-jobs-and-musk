@@ -10,23 +10,9 @@ Player::Player(GameMechs* thisGMRef,Food* foodref)
     playerPosList = new objPosArrayList();
 
     objPos headPos, headPos1, headPos2,headPos3;
-
-    // headPos.setObjPosX(thisGMRef->getBoardSizeX()/2);
-    // headPos.setObjPosY(thisGMRef->getBoardSizeY()/2);
     headPos.setObjPos(15,7,'*');
-    // headPos1.setObjPos(15,8,'*');
-    // headPos2.setObjPos(15,9,'*');
-    // headPos3.setObjPos(15,10,'*');
-
-
     playerPosList->insertHead(headPos);
-    // playerPosList->insertHead(headPos1);
-    // playerPosList->insertHead(headPos2);
-    // playerPosList->insertHead(headPos3);
-
     
-
-    // more actions to be included
 }
 
 
@@ -106,25 +92,7 @@ void Player::updatePlayerDir()
     else
     {   
         myDir = commandDir;
-    //     switch(myDir)
-    //     {
-    //         case 's':
-    //         myDir = DOWN;
-    //         break;
-
-    //         case 'w':
-    //         myDir = UP;
-    //         break;
-            
-    //         case 'a':
-    //         myDir = LEFT;
-    //         break;
-
-    //         case 'd':
-    //         myDir = RIGHT;
-    //         break;
-    //     }
-     }
+    }
 }             
 
 
@@ -210,12 +178,6 @@ void Player::movePlayer()
                 mainGameMechsRef -> setLoseFlag();
                 return;
             }
-
-            // if(playerPosList -> getElement(i).isPosEqual(temp))
-            // {   
-            //     mainGameMechsRef -> setLoseFlag();
-            //     return;
-            // }
         }
     }
     if(food -> getFoodPos().pos -> x == x && food -> getFoodPos().pos -> y == y )

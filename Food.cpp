@@ -5,7 +5,7 @@ Food::Food()
     foodPos.pos->x = 2;
     foodPos.pos->y = 3;
 
-    // foodPos.setObjPos(2,3,'x');
+    foodPos.setObjPos(2,3,'X');
 }
 
 Food::~Food()

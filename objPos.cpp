@@ -37,6 +37,7 @@ objPos& objPos::operator=(const objPos& this_obj)
 {
     pos -> x = this_obj.pos -> x;
     pos -> y = this_obj.pos -> y;
+    symbol = this_obj.symbol;
     return *this;
 }
 

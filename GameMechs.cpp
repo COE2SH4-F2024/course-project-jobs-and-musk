@@ -147,33 +147,22 @@ void GameMechs::update_frame_display(Food foods, objPosArrayList* playerPos, obj
     cleanFrameDisplay();
     for(int i = 0; i < playerPos -> getSize(); i++)
     {
-        frameDisplay[playerPos -> getElement(i).pos -> x][playerPos -> getElement(i).pos -> y] = '*';
+        frameDisplay[playerPos -> getElement(i).pos -> x][playerPos -> getElement(i).pos -> y] = playerPos->getElement(i).getSymbol();
     }
     
     for(int i = 0; i < border -> getSize(); i++)
     {
-        frameDisplay[border -> getElement(i).pos -> x][border -> getElement(i).pos -> y] = '#';
+        frameDisplay[border -> getElement(i).pos -> x][border -> getElement(i).pos -> y] = border -> getElement(i).getSymbol();
     }
 
-    frameDisplay[foods.getFoodPos().pos -> x][foods.getFoodPos().pos -> y] = 'x';
+    frameDisplay[foods.getFoodPos().pos -> x][foods.getFoodPos().pos -> y] = foods.getFoodPos().getSymbol();
     
 }
-// More methods should be added here
+
 
 void GameMechs::cleanFrameDisplay()
 { 
-    // for(int i = 0; i < boardSizeX; i++)
-    // {
-    //     delete[] frameDisplay[i];
-    // }
-
-    // delete[] frameDisplay;
-
-    // frameDisplay = new char* [boardSizeX];
-    // for(int i; i < boardSizeX; i++)
-    // { 
-    //     frameDisplay[i] = new char[boardSizeY];
-    // }
+   
 
     for(int i = 0; i < boardSizeX; i++)
     { 
