@@ -287,12 +287,14 @@ void testRemoveHead_1Element()
 	// The destructor will be called automatically for stack-allocated objects
 
 	tearDown(result);
+
 }
 
 // Test Case 4b - removeHead from 5 Element list
 void testRemoveHead_5Element()
 {
 	printf("\n=== testRemoveHead_5Element() ===\n");
+
 	bool result = true; // true;
 
 	objPos currentPos;
@@ -300,14 +302,22 @@ void testRemoveHead_5Element()
 	objPos headPos(3, 3, 'm');
 
 	// Insert 4 body elements, then 1 unique head element
+
 	objPosArrayList thisList;
+
 	thisList.insertHead(bodyPos);
+
 	thisList.insertHead(bodyPos);
 	thisList.insertHead(bodyPos);
 	thisList.insertHead(bodyPos);
 	thisList.insertHead(headPos);
 
 	thisList.removeHead();
+	
+	printf("dwdwdwwd");
+
+
+	
 	
 	int expectedSize = 4;
 	int actualSize = thisList.getSize();
@@ -332,6 +342,7 @@ void testRemoveHead_5Element()
 
 		result &= assert_equal(expectedCheck, actualCheck);	
 	}
+
 
 	// The destructor will be called automatically for stack-allocated objects
 
