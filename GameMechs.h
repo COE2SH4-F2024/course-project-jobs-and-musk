@@ -10,6 +10,8 @@
 
 using namespace std;
 
+class Food;  // Forward Declaration
+
 class GameMechs
 {
     private:
