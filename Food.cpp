@@ -92,18 +92,6 @@ void Food::generateFood(objPosArrayList* playerPos)
 
             }
 
-            // for(int i1 = 0; i1 < i; i1++)
-            // {
-
-            //     if(foodPos.getSymbol() == foodPoslist -> getElement(i1).getSymbol());
-            //     {   
-            //         flag = true;
-            //         break;
-            //     }
-
-            // }
-
-
 
             if (flag == false)
             {

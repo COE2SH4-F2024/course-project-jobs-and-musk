@@ -10,11 +10,6 @@ using namespace std;
 
 #define DELAY_CONST 100000
 
-
-
-
-
-
 Food food;
 GameMechs game;
 Player player = Player(&game, &food);
@@ -48,10 +43,6 @@ int main(void)
     CleanUp();
 
 }
-
-
-
-
 
 
 void Initialize(void)
@@ -96,18 +87,16 @@ void DrawScreen(void)
     game.printFrameDisplay();
     game.printScore();
     MacUILib_printf("Instruction\n");
-    MacUILib_printf("If you ate 'a', you will get 1 score and your length will plus 1\n");
-    MacUILib_printf("If you ate 'b', you will get 2 score and your length will plus 2\n");
-    MacUILib_printf("If you ate 'c', you will get 5 score and your length will plus 5\n");
-    MacUILib_printf("If you ate 'd', you will get 0 score and your length will minus 2\n");
-    MacUILib_printf("If you ate 'e', you will get 5 score and your length will plus 1\n");
+    MacUILib_printf("If you eat 'a', you will get 1 score and your length will plus 1\n");
+    MacUILib_printf("If you eat 'b', you will get 2 score and your length will plus 2\n");
+    MacUILib_printf("If you eat 'c', you will get 5 score and your length will plus 5\n");
+    MacUILib_printf("If you eat 'd', you will get 0 score and your length will minus 2\n");
+    MacUILib_printf("If you eat 'e', you will get 5 score and your length will plus 1\n");
     MacUILib_printf("\n==========Debugging Message==========\n");
     MacUILib_printf("Current direction is: %c\n", player.getPlayerDir());
     MacUILib_printf("Player Position (%d,%d)", player.getPlayerPos()->getElement(0).getObjPos().x, (player.getPlayerPos())->getElement(0).getObjPos().y);
     
-    MacUILib_printf("%d %d %d\n", food.getFoodIndex()[0],food.getFoodIndex()[1],food.getFoodIndex()[2]);
-     MacUILib_printf("%c %c %c", food.getFoodPos()->getElement(0).getSymbol(),food.getFoodPos()->getElement(1).getSymbol(),food.getFoodPos()->getElement(2).getSymbol());
-
+    
 }
 
 

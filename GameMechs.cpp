@@ -72,6 +72,7 @@ GameMechs::GameMechs(int boardX, int boardY)
         }
         
     }
+    delete boundry;
 }
 
 // do you need a destructor?

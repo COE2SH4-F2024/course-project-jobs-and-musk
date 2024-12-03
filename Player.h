@@ -24,7 +24,6 @@ class Player
         void updatePlayerDir();
         objPos movePlayer();
         char getPlayerDir();
-        bool checkFoodConsumption(objPos foodPos);
         void detectFood();
 
         // More methods to be added here
