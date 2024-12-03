@@ -10,6 +10,28 @@ objPosArrayList::objPosArrayList()
     listSize = 0;
 }
 
+objPosArrayList::objPosArrayList(const objPosArrayList& this_array)
+{
+    aList = new objPos[250];
+    for(int i = 0; i < 250;i++)
+    {
+        aList[i] = this_array.aList[i];
+    }
+    listSize = this_array.listSize;
+    arrayCapacity = 250;
+
+}
+
+objPosArrayList& objPosArrayList::operator=(const objPosArrayList& this_array)
+{
+    for(int i = 0; i < 250;i++)
+    {
+        aList[i] = this_array.aList[i];
+    }
+    listSize = this_array.listSize;
+    arrayCapacity = 250;
+}
+
 objPosArrayList::~objPosArrayList()
 {
     delete[] aList;
@@ -67,4 +89,9 @@ objPos objPosArrayList::getTailElement() const
 objPos objPosArrayList::getElement(int index) const
 {
     return aList[index];
+}
+
+void objPosArrayList::setElement(int i,objPos temp)
+{
+    aList[i] = temp;
 }

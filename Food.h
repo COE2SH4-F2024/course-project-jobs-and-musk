@@ -10,7 +10,8 @@ class Food
 {
     private:
 
-        objPos foodPos;
+        objPosArrayList* foodPoslist;
+        int foodNum;
 
     
     public:
@@ -18,9 +19,16 @@ class Food
         Food();
         ~Food();
 
-        objPos getFoodPos() const;
+        objPosArrayList* getFoodPos() const;
         Food& operator=(const Food& other);
         Food(const Food& other);
+        int getFoodsNum() const;
+        objPosArrayList* foodBin;
+        int foodIndex[3];
+        int* getFoodIndex();
+        
+
+
 
         void generateFood(objPosArrayList* playerPos);
 

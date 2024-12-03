@@ -10,10 +10,15 @@ using namespace std;
 
 #define DELAY_CONST 100000
 
+
+
+
+
+
 Food food;
 GameMechs game;
 Player player = Player(&game, &food);
-objPosArrayList* playerPosList;
+
 
 void Initialize(void);
 void GetInput(void);
@@ -32,8 +37,6 @@ int main(void)
 {
 
     Initialize();
-    // !game.getLoseFlagStatus() && !game.getExitFlagStatus()
-    int count = 0;
     while(!game.getLoseFlagStatus() && !game.getExitFlagStatus())  
     {
         GetInput();
@@ -55,6 +58,8 @@ void Initialize(void)
 {
     MacUILib_init();
     MacUILib_clearScreen();
+    food.generateFood(player.getPlayerPos());
+    
 }
 
 void GetInput(void)
@@ -69,6 +74,7 @@ void RunLogic(void)
 {
     player.updatePlayerDir();
     player.movePlayer();
+    player.detectFood();
     if(game.getInput() == 'e')
     {
         game.setExitTrue();
@@ -83,15 +89,24 @@ void RunLogic(void)
 
 
 void DrawScreen(void)
-{
+{ 
     MacUILib_clearScreen();
     game.cleanFrameDisplay();
     game.update_frame_display(food,player.getPlayerPos(),game.getBoundry());    
     game.printFrameDisplay();
     game.printScore();
+    MacUILib_printf("Instruction\n");
+    MacUILib_printf("If you ate 'a', you will get 1 score and your length will plus 1\n");
+    MacUILib_printf("If you ate 'b', you will get 2 score and your length will plus 2\n");
+    MacUILib_printf("If you ate 'c', you will get 5 score and your length will plus 5\n");
+    MacUILib_printf("If you ate 'd', you will get 0 score and your length will minus 2\n");
+    MacUILib_printf("If you ate 'e', you will get 5 score and your length will plus 1\n");
     MacUILib_printf("\n==========Debugging Message==========\n");
     MacUILib_printf("Current direction is: %c\n", player.getPlayerDir());
     MacUILib_printf("Player Position (%d,%d)", player.getPlayerPos()->getElement(0).getObjPos().x, (player.getPlayerPos())->getElement(0).getObjPos().y);
+    
+    MacUILib_printf("%d %d %d\n", food.getFoodIndex()[0],food.getFoodIndex()[1],food.getFoodIndex()[2]);
+     MacUILib_printf("%c %c %c", food.getFoodPos()->getElement(0).getSymbol(),food.getFoodPos()->getElement(1).getSymbol(),food.getFoodPos()->getElement(2).getSymbol());
 
 }
 

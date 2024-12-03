@@ -60,7 +60,7 @@ class GameMechs
         void printFrameDisplay();
 
 
-        void setScore();
+        void setScore(int i);
         void printScore();
         void printEndGameMessage();
         

@@ -9,7 +9,7 @@ Player::Player(GameMechs* thisGMRef,Food* foodref)
     commandDir = STOP; 
     playerPosList = new objPosArrayList();
 
-    objPos headPos, headPos1, headPos2,headPos3;
+    objPos headPos;
     headPos.setObjPos(15,7,'*');
     playerPosList->insertHead(headPos);
     
@@ -18,7 +18,7 @@ Player::Player(GameMechs* thisGMRef,Food* foodref)
 
 Player::~Player()
 {
-    // delete any heap members here
+    delete playerPosList;
 }
 
 objPosArrayList* Player::getPlayerPos() const
@@ -96,7 +96,7 @@ void Player::updatePlayerDir()
 }             
 
 
-void Player::movePlayer()
+objPos Player::movePlayer()
 {
     // PPA3 Finite State Machine logic
     objPos newHead;
@@ -166,33 +166,10 @@ void Player::movePlayer()
     }
     
     newHead.setObjPos(x,y,'*');
-    objPos* temp;
-    temp = &newHead;
+    return newHead;
 
     
-    if(playerPosList -> getSize() >= 2)
-    {  for(int i = 0; i < playerPosList -> getSize(); i++)
-        {
-            if(playerPosList -> getElement(i).pos -> x == x && playerPosList -> getElement(i).pos -> y == y)
-            {   
-                mainGameMechsRef -> setLoseFlag();
-                return;
-            }
-        }
-    }
-    if(food -> getFoodPos().pos -> x == x && food -> getFoodPos().pos -> y == y )
-    {
-        (*playerPosList).insertHead(newHead);
-        mainGameMechsRef->setScore();
-        food -> generateFood(playerPosList);
-    }
-    else
-    {
-        (*playerPosList).insertHead(newHead);
-        (*playerPosList).removeTail();
-    }
-
-
+    
 
 }
 
@@ -214,3 +191,88 @@ char Player::getPlayerDir()
     }
 }
 
+void Player::detectFood()
+{
+    if(playerPosList -> getSize() >= 2)
+    {  for(int i = 0; i < playerPosList -> getSize(); i++)
+        {
+            if(playerPosList -> getElement(i).pos -> x == movePlayer().pos -> x && playerPosList -> getElement(i).pos -> y == movePlayer().pos ->y)
+            {   
+                mainGameMechsRef -> setLoseFlag();
+                return;
+            }
+        }
+    }
+
+    
+
+
+
+
+    for(int i = 0; i < 3; i++)
+    {
+        if(food -> getFoodPos()-> getElement(i).pos -> x == movePlayer().pos -> x && food -> getFoodPos()-> getElement(i).pos -> y == movePlayer().pos -> y )
+        {
+            switch(food->getFoodPos()->getElement(i).getSymbol())
+            {
+                case 'a':
+                    (*playerPosList).insertHead(movePlayer());
+                    mainGameMechsRef->setScore(1);
+                    food -> generateFood(playerPosList);
+                    return;
+
+                case 'b':
+                    (*playerPosList).insertHead(movePlayer());
+                    (*playerPosList).insertHead(movePlayer());
+                    mainGameMechsRef->setScore(2);
+                    food -> generateFood(playerPosList);
+                    return;
+
+                case 'c':
+                    (*playerPosList).insertHead(movePlayer());
+                    (*playerPosList).insertHead(movePlayer());
+                    (*playerPosList).insertHead(movePlayer());
+                    (*playerPosList).insertHead(movePlayer());
+                    (*playerPosList).insertHead(movePlayer());
+                    food -> generateFood(playerPosList);
+                    mainGameMechsRef->setScore(5);
+                    return;
+                    
+                case 'd':
+                    if(playerPosList -> getSize() < 3)
+                    {
+                        for(int i1 = 0; i1 < (playerPosList -> getSize())-1; i1++)
+                        {
+                            playerPosList -> removeTail();
+                            
+                        }
+                        playerPosList -> insertHead(movePlayer());
+                        playerPosList -> removeTail();
+                        food -> generateFood(playerPosList);
+                        return;
+                    }
+                    else
+                    {
+                        (*playerPosList).removeTail();
+                        (*playerPosList).removeTail();
+                        food -> generateFood(playerPosList);
+                        return;
+                    }
+
+                case 'e':
+                    (*playerPosList).insertHead(movePlayer());
+                    mainGameMechsRef->setScore(5);
+                    food -> generateFood(playerPosList);
+                    return;
+
+
+            }
+            
+          
+        }
+           
+
+    }
+    (*playerPosList).insertHead(movePlayer());
+    (*playerPosList).removeTail();
+}

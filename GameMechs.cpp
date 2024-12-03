@@ -155,8 +155,10 @@ void GameMechs::update_frame_display(Food foods, objPosArrayList* playerPos, obj
         frameDisplay[border -> getElement(i).pos -> x][border -> getElement(i).pos -> y] = border -> getElement(i).getSymbol();
     }
 
-    frameDisplay[foods.getFoodPos().pos -> x][foods.getFoodPos().pos -> y] = foods.getFoodPos().getSymbol();
-    
+    for(int i = 0; i < 3; i++)
+    {   
+        frameDisplay[foods.getFoodPos() -> getElement(i).pos -> x][foods.getFoodPos() -> getElement(i).pos -> y] = foods.getFoodPos() -> getElement(i).getSymbol();
+    }
 }
 
 
@@ -198,9 +200,9 @@ objPosArrayList* GameMechs::getBoundry()  const
     return boundry;
 }
 
-void GameMechs:: setScore()
+void GameMechs:: setScore(int i)
 {
-    score++;
+    score += i;
 }
 
 void GameMechs:: printScore()
